@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>mimaaa</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Comic Sans MS', cursive;
+      background: #b38f9b;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #open-screen, #card {
+      text-align: center;
+      width: 100%;
+    }
+
+    #open-screen {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    #card {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .image-container {
+      width: 1000px;
+      height: 500px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(236, 194, 194, 0.2);
+      margin-top: 250px; /* GIVES SPACE ABOVE */
+    }
+
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .message {
+      max-width: 600px;
+      background: rgba(218, 187, 192, 0.849);
+      padding: 20px;
+      border-radius: 15px;
+      font-size: 1.2em;
+      color: #333;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    button {
+      padding: 15px 30px;
+      background: #682a35;
+      border: none;
+      font-size: 1.5em;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #723c41;
+    }
+
+    button {
+  padding: 10px 20px; 
+  background: #ffc6d0;
+  color: #333;
+  border: none;
+  border-radius: 12px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: 0.1s ease;
+}
+
+button:hover {
+  background: #ff9aa2;
+}
+
+  </style>
+</head>
+<body>
+
+<!-- OPEN SCREEN -->
+<div id="open-screen">
+  <button onclick="revealCard()">esmayl b4 u ofen, mems mhehehe :></button>
+</div>
+
+<!-- FINAL CARD -->
+<div id="card">
+  <div class="image-container">
+    <img src="8.jpg" alt="birthday photo">
+  </div>
+
+  <div class="message">
+    Happy Birthday, Mimasauuuur! 🎉💖<br><br>
+    I wish you all da beeeest. Pasenya kung kani ray nakaya. Stay safe, alwaaaays! And Thank youuuuu somuchueee sa aaaaaaall mwamwa! 🥰🎂 To more ls and ws wed youuuuuuuuu!
+hinde tayu magdadrama tudeyyy dahel tunga tunga nas gabie, kems HAHAHAHAHA. pi birtdeyy baliiiik
+    (humana ang kanta, triggur warnheeeng)
+  </div>
+  
+  <button onclick="goBack()">baliiiik skrrt skrrt</button>
+
+</div>
+
+<!-- MUSIC -->
+<audio id="bg-music" src="myusek.mp3" preload="auto"></audio>
+
+<script>
+  function revealCard() {
+  document.getElementById("open-screen").style.display = "none";
+  document.getElementById("card").style.display = "flex";
+  document.getElementById("bg-music").play();
+
+  // Flying confetti that falls gracefully 🎊
+  const duration = 5 * 1000; // 5 seconds
+  const end = Date.now() + duration;
+
+  (function frame() {
+    confetti({
+      particleCount: 3,
+      angle: 60,
+      spread: 55,
+      origin: { x: 0 },
+      ticks: 200, // mas taas = mas dugay mawala
+    });
+    confetti({
+      particleCount: 3,
+      angle: 120,
+      spread: 55,
+      origin: { x: 1 },
+      ticks: 200,
+    });
+
+    if (Date.now() < end) {
+      requestAnimationFrame(frame);
+    }
+  })();
+}
+
+  function goBack() {
+  document.getElementById("card").style.display = "none";
+  document.getElementById("open-screen").style.display = "flex";
+
+  // Reset music
+  const music = document.getElementById("bg-music");
+  music.pause();
+  music.currentTime = 0;
+}
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</body>
+</html>
